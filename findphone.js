@@ -8,6 +8,7 @@ const showPhone = () =>{
     .then(res => res.json())
     .then(data => showSearchPhone(data.data));
 }
+// showPhone();
 
 const showSearchPhone = phones =>{
   // console.log(phones);
