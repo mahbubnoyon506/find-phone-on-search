@@ -1,4 +1,4 @@
-console.log('Link connected');
+
 const showPhone = () =>{
     const searchInput = document.getElementById('search-input');
     const getInput = searchInput.value;
@@ -11,21 +11,34 @@ const showPhone = () =>{
 // showPhone();
 
 const showSearchPhone = phones =>{
-  // console.log(phones);
   const phoneDiv = document.getElementById('phone-wraper');
   phones.forEach(phone =>{
     const div = document.createElement('div');
     div.classList.add('col');
     div.innerHTML = `
-      <div class="card h-100">
-        <img src="..." class="card-img-top" alt="...">
-        <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-        </div>
-      </div>    
-    
-    `
+    <div class="card p-3">
+    <img src="${phone.image}" class="card-img-top img-fluid shadow mb-5 bg-body rounded" alt="...">
+    <div class="card-body">
+      <h4 class="card-title text-center text-success">${phone.phone_name}</h4>
+      <h6 class="card-sub-title text-center text-success">${phone.brand}</h6>
+      <button onclick="moreDetails()" class="d-grid col-4 mx-auto btn btn-primary btn-sm">View Details</button>
+    </div>
+  </div>   
+    `;
     phoneDiv.appendChild(div);
   })
 }
+
+ const moreDetails = phoneId =>{
+   const url = `https://openapi.programming-hero.com/api/phone/${phoneId}`;
+   fetch(url)
+   .then(res =>res.json())
+   .then(data => showMoreDetails(data))
+ }
+const showMoreDetails = details =>{
+  console.log(details)
+}
+
+
+
+
