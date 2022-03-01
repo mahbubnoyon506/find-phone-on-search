@@ -1,4 +1,4 @@
-
+// Search area code
 const showPhone = () =>{
     const searchInput = document.getElementById('search-input');
     const getInput = searchInput.value;
@@ -8,30 +8,28 @@ const showPhone = () =>{
     .then(res => res.json())
     .then(data => showSearchPhone(data.data));
 }
-// showPhone();
 
+// show result code
 const showSearchPhone = phones =>{
   const phoneDiv = document.getElementById('phone-wraper');
   phoneDiv.textContent = '';
     phones.forEach(phone =>{
-      // console.log(phone);
-      const div = document.createElement('div');
-      div.classList.add('col');
-      div.innerHTML = `
-      <div class="card p-3">
-      <img src="${phone.image}" class="card-img-top img-fluid" alt="...">
-      <div class="card-body">
-        <h4 class="card-title text-center text-success">${phone.phone_name}</h4>
-        <h6 class="card-sub-title text-center text-success">${phone.brand}</h6>
-        <button onclick="moreDetails('${phone.slug}')" class="d-grid col-4 mx-auto btn btn-primary btn-sm">View Details</button>
-      </div>
-    </div>   
-      `;
-      phoneDiv.appendChild(div);
-      
+        const div = document.createElement('div');
+        div.classList.add('col');
+        div.innerHTML = `
+        <div class="card p-3">
+        <img src="${phone.image}" class="card-img-top img-fluid" alt="...">
+        <div class="card-body">
+          <h4 class="card-title text-center text-success">${phone.phone_name}</h4>
+          <h6 class="card-sub-title text-center text-success">${phone.brand}</h6>
+          <button onclick="moreDetails('${phone.slug}')" class="d-grid col-4 mx-auto btn btn-primary btn-sm">View Details</button>
+        </div>
+      </div>   
+        `;
+        phoneDiv.appendChild(div);
     })
   }
-
+// more dwtails code
  const moreDetails = id =>{
    const url = `https://openapi.programming-hero.com/api/phone/${id}`;
    fetch(url)
@@ -40,10 +38,10 @@ const showSearchPhone = phones =>{
 
 }
 
+// show more details code
 const showMoreDetails = details =>{
    const detailDiv = document.getElementById('detail-id');
    detailDiv.textContent = '';
-  //  console.log(details);
      const div = document.createElement('div');
      div.classList.add('wrap');
      div.innerHTML = `
@@ -64,6 +62,10 @@ const showMoreDetails = details =>{
      `;
      detailDiv.appendChild(div);
 }
+
+
+
+
 
 
 
